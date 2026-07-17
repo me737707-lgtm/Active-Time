@@ -273,10 +273,6 @@ html, body {
   background: var(--md-on-primary-container);
   color: var(--md-primary-container);
 }
-.md-kpi--primary .md-kpi__hours-badge {
-  background: var(--md-on-primary-container);
-  color: var(--md-primary-container);
-}
 
 /* ---------- Filter bar ---------- */
 .md-filter-bar {
