@@ -1,6 +1,6 @@
 /* ============================================================
    ATOT Dashboard — Frontend Application Logic
-   Reads data from /data/*.json files (populated by GitHub Actions)
+   Reads data from ./data/*.json files (populated by GitHub Actions)
    ============================================================ */
 
 (() => {
@@ -106,14 +106,12 @@
   }
 
   async function loadAllData() {
-  const [outRaw, atRaw, notesRaw, sumRaw] = await Promise.all([
-    loadJSON('./data/output-data.json'),        // بدل /data/output-data.json
-    loadJSON('./data/active-time.json'),         // بدل /data/active-time.json
-    loadJSON('./data/notes.json'),               // بدل /data/notes.json
-    loadJSON('./data/overall-daily-summary.json'), // بدل /data/overall-daily-summary.json
-  ]);
-  
-  // ... باقي الكود زي ما هو ...
+    const [outRaw, atRaw, notesRaw, sumRaw] = await Promise.all([
+      loadJSON('./data/output-data.json'),
+      loadJSON('./data/active-time.json'),
+      loadJSON('./data/notes.json'),
+      loadJSON('./data/overall-daily-summary.json'),
+    ]);
 
     // Output Data
     if (outRaw && typeof outRaw === 'object') {
@@ -191,21 +189,26 @@
     dateLabel.textContent = `Snapshot for ${d.period || latestKey}`;
 
     const kpis = [
-      { label: 'Total Hours', value: fmtFloat(d.totalHours), context: 'Production + Training', primary: true },
-      { label: 'Total Users', value: fmtInt(d.totalUsers), context: 'All users' },
-      { label: 'Production Users', value: fmtInt(d.productionUsers), context: 'Active today' },
-      { label: 'Training Users', value: fmtInt(d.trainingUsers), context: 'Active today' },
-      { label: 'Avg Hrs / Prod. User', value: fmtFloat(d.avgHoursPerProductionUser), context: 'Production only' },
-      { label: 'Avg Hrs / User', value: fmtFloat(d.avgHoursPerUser), context: 'All users' },
+      { label: 'Total Hours', value: fmtFloat(d.totalHours), context: 'Production + Training', primary: true, hours: null },
+      { label: 'Total Users', value: fmtInt(d.totalUsers), context: 'All users', hours: null },
+      { label: 'Production Users', value: fmtInt(d.productionUsers), context: 'Active today', hours: `${fmtFloat(d.productionHours)} hrs` },
+      { label: 'Training Users', value: fmtInt(d.trainingUsers), context: 'Active today', hours: `${fmtFloat(d.trainingHours)} hrs` },
+      { label: 'Avg Hrs / Prod. User', value: fmtFloat(d.avgHoursPerProductionUser), context: 'Production only', hours: null },
+      { label: 'Avg Hrs / User', value: fmtFloat(d.avgHoursPerUser), context: 'All users', hours: null },
     ];
 
-    grid.innerHTML = kpis.map(k => `
-      <div class="md-kpi ${k.primary ? 'md-kpi--primary' : ''}">
-        <span class="md-kpi__label">${k.label}</span>
-        <span class="md-kpi__value">${k.value}</span>
-        <span class="md-kpi__context">${k.context}</span>
-      </div>
-    `).join('');
+    grid.innerHTML = kpis.map(k => {
+      const hoursBadge = k.hours ? `<div class="md-kpi__hours-badge" title="Hours">${k.hours}</div>` : '';
+      const hoursClass = k.hours ? 'md-kpi--with-hours' : '';
+      return `
+        <div class="md-kpi ${k.primary ? 'md-kpi--primary' : ''} ${hoursClass}">
+          ${hoursBadge}
+          <span class="md-kpi__label">${k.label}</span>
+          <span class="md-kpi__value">${k.value}</span>
+          <span class="md-kpi__context">${k.context}</span>
+        </div>
+      `;
+    }).join('');
 
     renderOverviewChart();
   }
@@ -301,31 +304,53 @@
     const dateKey = state.filters.activeTime.date;
     const data = state.activeTime[dateKey];
 
-    // Unmapped users callout
+    // Unmapped users callout - High Visibility Fix
     const unmappedEl = $('#at-unmapped');
     const unmappedText = $('#at-unmapped-text');
     if (data && Array.isArray(data.unmappedUsers) && data.unmappedUsers.length) {
       unmappedEl.hidden = false;
-      unmappedText.textContent = `${data.unmappedUsers.length} user(s) have no valid shift mapping: ${data.unmappedUsers.join(', ')}`;
+      unmappedText.innerHTML = `
+        <span class="md-title-small">⚠️ Unmapped Users</span>
+        <p class="md-body-small">The following users have no valid shift mapping:</p>
+        <span class="unmapped-emails">${data.unmappedUsers.join(', ')}</span>
+      `;
     } else {
       unmappedEl.hidden = true;
     }
 
-    // Shift analysis cards
+    // Shift analysis cards - Old Design Restored
     const shiftGrid = $('#at-shift-grid');
     if (data && Array.isArray(data.shiftAnalysis) && data.shiftAnalysis.length) {
       shiftGrid.innerHTML = data.shiftAnalysis.map(s => `
         <div class="md-shift-card">
-          <div class="md-shift-card__title">
-            <span class="md-title-small">Shift ${s.shift}</span>
-            <span class="md-shift-badge">${s.shift}</span>
+          <div class="md-shift-card__header">
+            <h3 class="md-shift-card__title">Shift ${s.shift === 'Unknown' ? 'Unknown' : s.shift}</h3>
+            <span class="md-shift-badge">${s.shift === 'Unknown' ? 'UNK' : s.shift}</span>
           </div>
-          <div class="md-shift-card__row"><span>Production users</span><span>${fmtInt(s.productionUsers)}</span></div>
-          <div class="md-shift-card__row"><span>Production hours</span><span>${fmtFloat(s.productionHours)}</span></div>
-          <div class="md-shift-card__row"><span>Training users</span><span>${fmtInt(s.trainingUsers)}</span></div>
-          <div class="md-shift-card__row"><span>Training hours</span><span>${fmtFloat(s.trainingHours)}</span></div>
-          <div class="md-shift-card__row"><span>Avg hrs / prod. user</span><span>${fmtFloat(s.avgPerProductionUser)}</span></div>
-          <div class="md-shift-card__row"><span>Avg hrs / user</span><span>${fmtFloat(s.avgPerUser)}</span></div>
+          <div class="md-shift-card__row md-shift-card__row--highlight">
+            <span>Production users</span>
+            <span>${fmtInt(s.productionUsers)}</span>
+          </div>
+          <div class="md-shift-card__row md-shift-card__row--highlight">
+            <span>Production hours</span>
+            <span>${fmtFloat(s.productionHours)}</span>
+          </div>
+          <div class="md-shift-card__row">
+            <span>Training users</span>
+            <span>${fmtInt(s.trainingUsers)}</span>
+          </div>
+          <div class="md-shift-card__row">
+            <span>Training hours</span>
+            <span>${fmtFloat(s.trainingHours)}</span>
+          </div>
+          <div class="md-shift-card__row">
+            <span>Avg hrs / prod. user</span>
+            <span>${fmtFloat(s.avgPerProductionUser)}</span>
+          </div>
+          <div class="md-shift-card__row">
+            <span>Avg hrs / user</span>
+            <span>${fmtFloat(s.avgPerUser)}</span>
+          </div>
         </div>
       `).join('');
     } else {
