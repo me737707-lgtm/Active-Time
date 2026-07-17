@@ -106,12 +106,14 @@
   }
 
   async function loadAllData() {
-    const [outRaw, atRaw, notesRaw, sumRaw] = await Promise.all([
-      loadJSON('/data/output-data.json'),
-      loadJSON('/data/active-time.json'),
-      loadJSON('/data/notes.json'),
-      loadJSON('/data/overall-daily-summary.json'),
-    ]);
+  const [outRaw, atRaw, notesRaw, sumRaw] = await Promise.all([
+    loadJSON('./data/output-data.json'),        // بدل /data/output-data.json
+    loadJSON('./data/active-time.json'),         // بدل /data/active-time.json
+    loadJSON('./data/notes.json'),               // بدل /data/notes.json
+    loadJSON('./data/overall-daily-summary.json'), // بدل /data/overall-daily-summary.json
+  ]);
+  
+  // ... باقي الكود زي ما هو ...
 
     // Output Data
     if (outRaw && typeof outRaw === 'object') {
