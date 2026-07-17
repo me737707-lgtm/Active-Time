@@ -215,6 +215,8 @@ html, body {
   display: flex;
   flex-direction: column;
   gap: 8px;
+  align-items: center;      /* ✅ center children horizontally */
+  text-align: center;       /* ✅ center text */
   border: 1px solid var(--md-outline-variant);
   transition: box-shadow var(--md-duration-short) var(--md-easing-standard);
   position: relative;
@@ -226,6 +228,8 @@ html, body {
   text-transform: uppercase;
   letter-spacing: 0.5px;
   font-weight: 500;
+  text-align: center;       /* ✅ center the label */
+  width: 100%;              /* ✅ full width for centering */
 }
 .md-kpi__value {
   font-size: 32px;
@@ -233,23 +237,33 @@ html, body {
   font-weight: 500;
   color: var(--md-on-surface);
   font-variant-numeric: tabular-nums;
+  text-align: center;       /* ✅ center the number */
+  width: 100%;              /* ✅ full width for centering */
 }
 .md-kpi__context {
   font-size: var(--md-body-small-size);
   color: var(--md-on-surface-variant);
+  text-align: center;       /* ✅ center the context text */
+  width: 100%;              /* ✅ full width for centering */
 }
 .md-kpi--primary { 
   background: var(--md-primary-container); 
   color: var(--md-on-primary-container); 
-  border-color: transparent; 
+  border-color: transparent;
+  align-items: center;      /* ✅ center children */
+  text-align: center;       /* ✅ center text */
 }
 .md-kpi--primary .md-kpi__label, 
 .md-kpi--primary .md-kpi__context { 
   color: var(--md-on-primary-container); 
-  opacity: 0.85; 
+  opacity: 0.85;
+  text-align: center;       /* ✅ center text */
+  width: 100%;              /* ✅ full width */
 }
 .md-kpi--primary .md-kpi__value { 
-  color: var(--md-on-primary-container); 
+  color: var(--md-on-primary-container);
+  text-align: center;       /* ✅ center the number */
+  width: 100%;              /* ✅ full width */
 }
 
 /* KPI with hours display */
@@ -268,10 +282,12 @@ html, body {
   font-weight: 600;
   font-variant-numeric: tabular-nums;
   text-align: center;
+  align-self: center;       /* ✅ center in flex container */
 }
 .md-kpi--primary .md-kpi__hours-badge {
   background: var(--md-on-primary-container);
   color: var(--md-primary-container);
+  align-self: center;       /* ✅ center in flex container */
 }
 
 /* ---------- Filter bar ---------- */
