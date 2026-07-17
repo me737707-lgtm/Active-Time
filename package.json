@@ -1,0 +1,15 @@
+{
+  "name": "atot-dashboard",
+  "version": "1.0.0",
+  "private": true,
+  "description": "ATOT Dashboard - Active Time / Output Tracking",
+  "scripts": {
+    "sync": "node scripts/sync-sheet-data.js"
+  },
+  "dependencies": {
+    "googleapis": "^140.0.0"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
