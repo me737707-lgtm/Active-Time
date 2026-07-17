@@ -1,0 +1,158 @@
+{
+  "rows": [
+    {
+      "period": "2026, 07-01",
+      "productionUsers": 707,
+      "productionHours": 4,
+      "trainingUsers": 29,
+      "trainingHours": 127.03,
+      "totalHours": 4,
+      "totalUsers": 736,
+      "avgHoursPerProductionUser": 6,
+      "avgHoursPerUser": 5.94
+    },
+    {
+      "period": "2026, 07-02",
+      "productionUsers": 695,
+      "productionHours": 4,
+      "trainingUsers": 30,
+      "trainingHours": 85.61,
+      "totalHours": 4,
+      "totalUsers": 725,
+      "avgHoursPerProductionUser": 5.97,
+      "avgHoursPerUser": 5.84
+    },
+    {
+      "period": "2026, 07-03",
+      "productionUsers": 322,
+      "productionHours": 1,
+      "trainingUsers": 11,
+      "trainingHours": 27.22,
+      "totalHours": 1,
+      "totalUsers": 333,
+      "avgHoursPerProductionUser": 4.66,
+      "avgHoursPerUser": 4.59
+    },
+    {
+      "period": "2026, 07-04",
+      "productionUsers": 709,
+      "productionHours": 3,
+      "trainingUsers": 18,
+      "trainingHours": 34.81,
+      "totalHours": 3,
+      "totalUsers": 727,
+      "avgHoursPerProductionUser": 4.82,
+      "avgHoursPerUser": 4.75
+    },
+    {
+      "period": "2026, 07-05",
+      "productionUsers": 739,
+      "productionHours": 4,
+      "trainingUsers": 21,
+      "trainingHours": 84.15,
+      "totalHours": 4,
+      "totalUsers": 760,
+      "avgHoursPerProductionUser": 5.83,
+      "avgHoursPerUser": 5.78
+    },
+    {
+      "period": "2026, 07-06",
+      "productionUsers": 724,
+      "productionHours": 4,
+      "trainingUsers": 9,
+      "trainingHours": 31.49,
+      "totalHours": 4,
+      "totalUsers": 733,
+      "avgHoursPerProductionUser": 5.53,
+      "avgHoursPerUser": 5.51
+    },
+    {
+      "period": "2026, 07-07",
+      "productionUsers": 681,
+      "productionHours": 3,
+      "trainingUsers": 0,
+      "trainingHours": 0,
+      "totalHours": 3,
+      "totalUsers": 681,
+      "avgHoursPerProductionUser": 5.26,
+      "avgHoursPerUser": 5.26
+    },
+    {
+      "period": "2026, 07-08",
+      "productionUsers": 567,
+      "productionHours": 2,
+      "trainingUsers": 4,
+      "trainingHours": 0.06,
+      "totalHours": 2,
+      "totalUsers": 571,
+      "avgHoursPerProductionUser": 4.95,
+      "avgHoursPerUser": 4.92
+    },
+    {
+      "period": "2026, 07-09",
+      "productionUsers": 597,
+      "productionHours": 3,
+      "trainingUsers": 1,
+      "trainingHours": 20.53,
+      "totalHours": 3,
+      "totalUsers": 598,
+      "avgHoursPerProductionUser": 6.43,
+      "avgHoursPerUser": 6.46
+    },
+    {
+      "period": "2026, 07-10",
+      "productionUsers": 328,
+      "productionHours": 1,
+      "trainingUsers": 21,
+      "trainingHours": 33.38,
+      "totalHours": 1,
+      "totalUsers": 349,
+      "avgHoursPerProductionUser": 5.12,
+      "avgHoursPerUser": 4.91
+    },
+    {
+      "period": "2026, 07-11",
+      "productionUsers": 628,
+      "productionHours": 3,
+      "trainingUsers": 28,
+      "trainingHours": 42.6,
+      "totalHours": 3,
+      "totalUsers": 656,
+      "avgHoursPerProductionUser": 4.84,
+      "avgHoursPerUser": 4.7
+    },
+    {
+      "period": "2026, 07-13",
+      "productionUsers": 684,
+      "productionHours": 4,
+      "trainingUsers": 49,
+      "trainingHours": 117.78,
+      "totalHours": 4,
+      "totalUsers": 733,
+      "avgHoursPerProductionUser": 6.01,
+      "avgHoursPerUser": 5.76
+    },
+    {
+      "period": "2026, 07-14",
+      "productionUsers": 699,
+      "productionHours": 4,
+      "trainingUsers": 43,
+      "trainingHours": 144.6,
+      "totalHours": 4,
+      "totalUsers": 742,
+      "avgHoursPerProductionUser": 6.06,
+      "avgHoursPerUser": 5.9
+    },
+    {
+      "period": "2026, 07-15",
+      "productionUsers": 703,
+      "productionHours": 4,
+      "trainingUsers": 38,
+      "trainingHours": 102.06,
+      "totalHours": 4,
+      "totalUsers": 741,
+      "avgHoursPerProductionUser": 6.12,
+      "avgHoursPerUser": 5.94
+    }
+  ]
+}

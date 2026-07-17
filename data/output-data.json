@@ -1,0 +1,13 @@
+{
+  "2026-07-15": {
+    "period": "2026, 07-15",
+    "productionUsers": 703,
+    "productionHours": 4300.721055,
+    "trainingUsers": 38,
+    "trainingHours": 102.0556926,
+    "totalHours": 4402.776747,
+    "totalUsers": 741,
+    "avgHoursPerProductionUser": 6.117668641,
+    "avgHoursPerUser": 5.941669025
+  }
+}
