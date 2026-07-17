@@ -254,12 +254,12 @@ html, body {
 
 /* KPI with hours display */
 .md-kpi--with-hours {
-  padding: 24px;
+  padding: 20px;
 }
 .md-kpi__hours-badge {
-  position: absolute;
-  top: 16px;
-  right: 16px;
+  position: static;
+  display: inline-block;
+  margin-top: 8px;
   background: var(--md-primary-container);
   color: var(--md-on-primary-container);
   padding: 6px 12px;
@@ -267,6 +267,11 @@ html, body {
   font-size: var(--md-body-small-size);
   font-weight: 600;
   font-variant-numeric: tabular-nums;
+  text-align: center;
+}
+.md-kpi--primary .md-kpi__hours-badge {
+  background: var(--md-on-primary-container);
+  color: var(--md-primary-container);
 }
 .md-kpi--primary .md-kpi__hours-badge {
   background: var(--md-on-primary-container);
