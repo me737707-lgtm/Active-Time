@@ -41,9 +41,10 @@
     return s;
   }
 
+  // ✅ تم إصلاح التنسيق هنا لإزالة التكرار
   function fmtNumber(n, digits = 0) {
     if (n === null || n === undefined || Number.isNaN(+n)) return '—';
-    return Number(n).toLocaleString(undefined, {
+    return Number(n).toLocaleString('en-US', {
       minimumFractionDigits: digits,
       maximumFractionDigits: digits,
     });
@@ -601,6 +602,7 @@
   }
 
   // ========== CHART HELPERS ==========
+  // ✅ تم إصلاح دالة chartOptions لإزالة التكرار وإضافة تنسيق الأرقام الصحيح
   function chartOptions(axes) {
     return {
       responsive: true,
@@ -622,8 +624,23 @@
           bodyColor: getCSS('--md-on-surface'),
           borderColor: getCSS('--md-outline-variant'),
           borderWidth: 1,
-          padding: 10,
+          padding: 12,
           cornerRadius: 8,
+          callbacks: {
+            label: function(context) {
+              let label = context.dataset.label || '';
+              if (label) {
+                label += ': ';
+              }
+              if (context.parsed.y !== null) {
+                label += new Intl.NumberFormat('en-US', {
+                  minimumFractionDigits: 2,
+                  maximumFractionDigits: 2
+                }).format(context.parsed.y);
+              }
+              return label;
+            }
+          }
         },
       },
       scales: Object.fromEntries(
@@ -631,7 +648,15 @@
           beginAtZero: cfg.beginAtZero ?? false,
           position: cfg.position || 'left',
           title: cfg.title ? { display: true, text: cfg.title, color: cfg.color || getCSS('--md-on-surface-variant') } : undefined,
-          ticks: { color: cfg.color || getCSS('--md-on-surface-variant') },
+          ticks: { 
+            color: cfg.color || getCSS('--md-on-surface-variant'),
+            callback: function(value) {
+              return new Intl.NumberFormat('en-US', {
+                notation: 'standard',
+                maximumFractionDigits: 0
+              }).format(value);
+            }
+          },
           grid: cfg.grid || { color: hexToRGBA(getCSS('--md-outline-variant'), 0.4) },
         }])
       ),
