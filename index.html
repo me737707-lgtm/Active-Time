@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ATOT Dashboard — Active Time / Output Tracking</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Roboto+Flex:opsz,wght@8..144,400;8..144,500;8..144,700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Symbols+Outlined" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <link rel="stylesheet" href="/css/styles.css" />
+</head>
+<body>
+  <header class="md-top-app-bar">
+    <div class="md-top-app-bar__row">
+      <div class="md-top-app-bar__section md-top-app-bar__section--leading">
+        <span class="material-symbols-outlined md-top-app-bar__icon">monitoring</span>
+        <h1 class="md-top-app-bar__headline">ATOT Dashboard</h1>
+      </div>
+      <div class="md-top-app-bar__section md-top-app-bar__section--trailing">
+        <span id="last-sync" class="md-top-app-bar__meta"></span>
+      </div>
+    </div>
+    <nav class="md-tabs" role="tablist" aria-label="Dashboard sections">
+      <button class="md-tab is-active" role="tab" data-section="overview" aria-selected="true">
+        <span class="material-symbols-outlined">dashboard</span>
+        <span>Overview</span>
+      </button>
+      <button class="md-tab" role="tab" data-section="active-time" aria-selected="false">
+        <span class="material-symbols-outlined">schedule</span>
+        <span>Active Time</span>
+      </button>
+      <button class="md-tab" role="tab" data-section="notes" aria-selected="false">
+        <span class="material-symbols-outlined">note_alt</span>
+        <span>Notes</span>
+      </button>
+      <button class="md-tab" role="tab" data-section="summary" aria-selected="false">
+        <span class="material-symbols-outlined">analytics</span>
+        <span>Daily Summary</span>
+      </button>
+    </nav>
+  </header>
+
+  <main class="md-main">
+    <!-- Overview Section -->
+    <section id="section-overview" class="md-section is-active" data-section="overview">
+      <div class="md-section-header">
+        <h2 class="md-headline-medium">Today's Snapshot</h2>
+        <p class="md-body-medium" id="overview-date-label"></p>
+      </div>
+      <div class="md-kpi-grid" id="kpi-grid"></div>
+
+      <div class="md-card md-card--chart">
+        <div class="md-card__header">
+          <h3 class="md-title-medium">Historical Trend</h3>
+          <div class="md-date-range">
+            <label class="md-field">
+              <span class="md-field__label">From</span>
+              <input type="date" id="overview-from" class="md-field__input" />
+            </label>
+            <label class="md-field">
+              <span class="md-field__label">To</span>
+              <input type="date" id="overview-to" class="md-field__input" />
+            </label>
+          </div>
+        </div>
+        <div class="md-card__body">
+          <canvas id="overview-trend-chart"></canvas>
+        </div>
+      </div>
+    </section>
+
+    <!-- Active Time Section -->
+    <section id="section-active-time" class="md-section" data-section="active-time" hidden>
+      <div class="md-section-header">
+        <h2 class="md-headline-medium">Active Time</h2>
+        <p class="md-body-medium">Per-labeler production activity and shift analysis.</p>
+      </div>
+
+      <div class="md-filter-bar">
+        <label class="md-field">
+          <span class="md-field__label">Date</span>
+          <select id="at-date" class="md-field__input"></select>
+        </label>
+        <label class="md-field">
+          <span class="md-field__label">Shift</span>
+          <select id="at-shift" class="md-field__input">
+            <option value="">All shifts</option>
+          </select>
+        </label>
+        <label class="md-field">
+          <span class="md-field__label">Unit</span>
+          <select id="at-unit" class="md-field__input">
+            <option value="">All units</option>
+          </select>
+        </label>
+        <label class="md-field md-field--search">
+          <span class="md-field__label">Labeler</span>
+          <input type="search" id="at-search" class="md-field__input" placeholder="Search email..." />
+        </label>
+      </div>
+
+      <div id="at-unmapped" class="md-callout md-callout--warning" hidden>
+        <span class="material-symbols-outlined">warning</span>
+        <div>
+          <strong class="md-title-small">Unmapped users</strong>
+          <p class="md-body-small" id="at-unmapped-text"></p>
+        </div>
+      </div>
+
+      <div class="md-shift-grid" id="at-shift-grid"></div>
+
+      <div class="md-card">
+        <div class="md-card__header">
+          <h3 class="md-title-medium">Labeler Rows</h3>
+          <span class="md-body-small" id="at-count"></span>
+        </div>
+        <div class="md-card__body md-table-wrap">
+          <table class="md-table" id="at-table">
+            <thead>
+              <tr>
+                <th data-sort="labeler">Labeler</th>
+                <th data-sort="tlQtc">TL / QTC</th>
+                <th data-sort="shift">Shift</th>
+                <th data-sort="pc">PC</th>
+                <th data-sort="unit">Unit</th>
+                <th data-sort="productiveHours" class="num">Prod. Hours</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- Notes Section -->
+    <section id="section-notes" class="md-section" data-section="notes" hidden>
+      <div class="md-section-header">
+        <h2 class="md-headline-medium">Reconciliation Notes</h2>
+        <p class="md-body-medium">Per-user production vs. training reconciliation for each day.</p>
+      </div>
+
+      <div class="md-filter-bar">
+        <label class="md-field">
+          <span class="md-field__label">Date</span>
+          <select id="notes-date" class="md-field__input"></select>
+        </label>
+        <label class="md-field md-field--search">
+          <span class="md-field__label">User</span>
+          <input type="search" id="notes-search" class="md-field__input" placeholder="Search email..." />
+        </label>
+        <div class="md-chip-set" id="notes-diff-chips" role="group" aria-label="Difference filter">
+          <button class="md-chip is-active" data-diff="">All</button>
+          <button class="md-chip" data-diff="balanced">Balanced</button>
+          <button class="md-chip" data-diff="prod-heavy">Prod. heavy</button>
+          <button class="md-chip" data-diff="train-heavy">Train. heavy</button>
+        </div>
+      </div>
+
+      <div class="md-card">
+        <div class="md-card__header">
+          <h3 class="md-title-medium">Notes</h3>
+          <span class="md-body-small" id="notes-count"></span>
+        </div>
+        <div class="md-card__body md-table-wrap">
+          <table class="md-table" id="notes-table">
+            <thead>
+              <tr>
+                <th data-sort="user">User</th>
+                <th data-sort="trainingHours" class="num">Training Hrs</th>
+                <th data-sort="productionHours" class="num">Production Hrs</th>
+                <th data-sort="difference" class="num">Difference</th>
+                <th data-sort="category">Category</th>
+                <th>Note</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- Overall Daily Summary Section -->
+    <section id="section-summary" class="md-section" data-section="summary" hidden>
+      <div class="md-section-header">
+        <h2 class="md-headline-medium">Overall Daily Summary</h2>
+        <p class="md-body-medium">Cumulative historical record across all processed days.</p>
+      </div>
+
+      <div class="md-filter-bar">
+        <label class="md-field">
+          <span class="md-field__label">From</span>
+          <input type="date" id="sum-from" class="md-field__input" />
+        </label>
+        <label class="md-field">
+          <span class="md-field__label">To</span>
+          <input type="date" id="sum-to" class="md-field__input" />
+        </label>
+      </div>
+
+      <div class="md-card md-card--chart">
+        <div class="md-card__header">
+          <h3 class="md-title-medium">Totals Over Time</h3>
+        </div>
+        <div class="md-card__body">
+          <canvas id="sum-totals-chart"></canvas>
+        </div>
+      </div>
+
+      <div class="md-card md-card--chart">
+        <div class="md-card__header">
+          <h3 class="md-title-medium">Average Hours per User</h3>
+        </div>
+        <div class="md-card__body">
+          <canvas id="sum-avg-chart"></canvas>
+        </div>
+      </div>
+
+      <div class="md-card">
+        <div class="md-card__header">
+          <h3 class="md-title-medium">Daily Records</h3>
+          <span class="md-body-small" id="sum-count"></span>
+        </div>
+        <div class="md-card__body md-table-wrap">
+          <table class="md-table" id="sum-table">
+            <thead>
+              <tr>
+                <th data-sort="period">Date</th>
+                <th data-sort="totalUsers" class="num">Total Users</th>
+                <th data-sort="productionUsers" class="num">Prod. Users</th>
+                <th data-sort="trainingUsers" class="num">Train. Users</th>
+                <th data-sort="totalHours" class="num">Total Hours</th>
+                <th data-sort="productionHours" class="num">Prod. Hours</th>
+                <th data-sort="trainingHours" class="num">Train. Hours</th>
+                <th data-sort="avgHoursPerProductionUser" class="num">Avg Hrs / Prod. User</th>
+                <th data-sort="avgHoursPerUser" class="num">Avg Hrs / User</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <div id="loading-overlay" class="md-loading">
+      <div class="md-spinner" role="status" aria-label="Loading"></div>
+      <p class="md-body-medium">Loading dashboard data…</p>
+    </div>
+  </main>
+
+  <script src="/js/app.js"></script>
+</body>
+</html>
