@@ -203,10 +203,10 @@
       const hoursClass = k.hours ? 'md-kpi--with-hours' : '';
       return `
         <div class="md-kpi ${k.primary ? 'md-kpi--primary' : ''} ${hoursClass}">
-          ${hoursBadge}
           <span class="md-kpi__label">${k.label}</span>
           <span class="md-kpi__value">${k.value}</span>
           <span class="md-kpi__context">${k.context}</span>
+          ${hoursBadge}
         </div>
       `;
     }).join('');
@@ -322,7 +322,39 @@
     // Shift analysis cards - Old Design Restored
     const shiftGrid = $('#at-shift-grid');
     if (data && Array.isArray(data.shiftAnalysis) && data.shiftAnalysis.length) {
-      shiftGrid.innerHTML = data.shiftAnalysis.map(s => `
+      // Calculate actual hours from rows data for each shift (fallback for incorrect backend data)
+      const hoursByShift = {};
+      if (data.rows && Array.isArray(data.rows)) {
+        data.rows.forEach(r => {
+          const shift = r.shift || 'Unknown';
+          if (!hoursByShift[shift]) {
+            hoursByShift[shift] = { productionHours: 0, trainingHours: 0 };
+          }
+          if (r.productiveHours && !isNaN(r.productiveHours)) {
+            hoursByShift[shift].productionHours += parseFloat(r.productiveHours);
+          }
+          // Training hours might come from a different field; adjust as needed
+          if (r.trainingHours && !isNaN(r.trainingHours)) {
+            hoursByShift[shift].trainingHours += parseFloat(r.trainingHours);
+          }
+        });
+      }
+
+      shiftGrid.innerHTML = data.shiftAnalysis.map(s => {
+        const shiftKey = s.shift || 'Unknown';
+        // Use calculated hours from rows if available and shiftAnalysis value seems too small
+        let prodHours = s.productionHours;
+        let trainHours = s.trainingHours;
+
+        if (hoursByShift[shiftKey]) {
+          const calcProd = hoursByShift[shiftKey].productionHours;
+          const calcTrain = hoursByShift[shiftKey].trainingHours;
+          // If calculated hours are significantly larger, use them
+          if (calcProd > prodHours * 10) prodHours = calcProd;
+          if (calcTrain > trainHours * 10) trainHours = calcTrain;
+        }
+
+        return `
         <div class="md-shift-card">
           <div class="md-shift-card__header">
             <h3 class="md-shift-card__title">Shift ${s.shift === 'Unknown' ? 'Unknown' : s.shift}</h3>
@@ -334,7 +366,7 @@
           </div>
           <div class="md-shift-card__row md-shift-card__row--highlight">
             <span>Production hours</span>
-            <span>${fmtFloat(s.productionHours)}</span>
+            <span>${fmtFloat(prodHours)}</span>
           </div>
           <div class="md-shift-card__row">
             <span>Training users</span>
@@ -342,7 +374,7 @@
           </div>
           <div class="md-shift-card__row">
             <span>Training hours</span>
-            <span>${fmtFloat(s.trainingHours)}</span>
+            <span>${fmtFloat(trainHours)}</span>
           </div>
           <div class="md-shift-card__row">
             <span>Avg hrs / prod. user</span>
@@ -353,7 +385,7 @@
             <span>${fmtFloat(s.avgPerUser)}</span>
           </div>
         </div>
-      `).join('');
+      `}).join('');
     } else {
       shiftGrid.innerHTML = emptyStateHTML('event_busy', 'No shift analysis for this date.');
     }
@@ -633,10 +665,13 @@
                 label += ': ';
               }
               if (context.parsed.y !== null) {
+                // Show clean numbers: integers for large values, 1-2 decimals for small
+                const val = context.parsed.y;
+                const digits = Math.abs(val) >= 100 ? 0 : (Math.abs(val) >= 10 ? 1 : 2);
                 label += new Intl.NumberFormat('en-US', {
-                  minimumFractionDigits: 2,
-                  maximumFractionDigits: 2
-                }).format(context.parsed.y);
+                  minimumFractionDigits: digits,
+                  maximumFractionDigits: digits
+                }).format(val);
               }
               return label;
             }
@@ -650,6 +685,7 @@
           title: cfg.title ? { display: true, text: cfg.title, color: cfg.color || getCSS('--md-on-surface-variant') } : undefined,
           ticks: { 
             color: cfg.color || getCSS('--md-on-surface-variant'),
+            // Show clean readable numbers: 2700, 3100, 1,726, etc.
             callback: function(value) {
               return new Intl.NumberFormat('en-US', {
                 notation: 'standard',
