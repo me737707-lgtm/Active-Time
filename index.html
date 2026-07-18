@@ -47,8 +47,23 @@
     <section id="section-overview" class="md-section is-active" data-section="overview">
       <div class="md-section-header">
         <h2 class="md-headline-medium">Today's Snapshot</h2>
-        <p class="md-body-medium" id="overview-date-label"></p>
+        <div class="md-date-selector">
+          <label class="md-field">
+            <span class="md-field__label">Select Date</span>
+            <input type="date" id="overview-date" class="md-field__input" />
+          </label>
+          <p class="md-body-medium" id="overview-date-label"></p>
+        </div>
       </div>
+
+      <div id="overview-no-data" class="md-callout md-callout--warning" hidden>
+        <span class="material-symbols-outlined">info</span>
+        <div>
+          <strong class="md-title-small">No Data Available</strong>
+          <p class="md-body-small">There is no snapshot data for the selected date.</p>
+        </div>
+      </div>
+
       <div class="md-kpi-grid" id="kpi-grid"></div>
 
       <div class="md-card md-card--chart">
