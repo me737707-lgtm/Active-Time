@@ -41,7 +41,6 @@
     return s;
   }
 
-  // ✅ تم إصلاح التنسيق هنا لإزالة التكرار
   function fmtNumber(n, digits = 0) {
     if (n === null || n === undefined || Number.isNaN(+n)) return '—';
     return Number(n).toLocaleString('en-US', {
@@ -173,21 +172,37 @@
   }
 
   // ========== OVERVIEW SECTION ==========
-  function renderOverview() {
+  function renderOverview(selectedDate = null) {
     const grid = $('#kpi-grid');
     const dateLabel = $('#overview-date-label');
+    const noDataEl = $('#overview-no-data');
     grid.innerHTML = '';
 
-    const latestKey = latestDateKey(state.outputData);
-    if (!latestKey) {
+    // Determine which date to show
+    const dateToShow = selectedDate || latestDateKey(state.outputData);
+    
+    if (!dateToShow) {
       dateLabel.textContent = 'No data available';
       grid.innerHTML = emptyStateHTML('inbox_empty', 'No snapshot data yet. Run the sync pipeline to populate the dashboard.');
+      if (noDataEl) noDataEl.hidden = true;
       renderOverviewChart();
       return;
     }
 
-    const d = state.outputData[latestKey];
-    dateLabel.textContent = `Snapshot for ${d.period || latestKey}`;
+    const d = state.outputData[dateToShow];
+    
+    if (!d) {
+      // No data for this date
+      if (noDataEl) noDataEl.hidden = false;
+      grid.innerHTML = '';
+      dateLabel.textContent = `Selected: ${dateToShow}`;
+      renderOverviewChart();
+      return;
+    }
+
+    // Data exists
+    if (noDataEl) noDataEl.hidden = true;
+    dateLabel.textContent = `Snapshot for ${d.period || dateToShow}`;
 
     const kpis = [
       { label: 'Total Hours', value: fmtFloat(d.totalHours), context: 'Production + Training', primary: true, hours: null },
@@ -333,7 +348,6 @@
           if (r.productiveHours && !isNaN(r.productiveHours)) {
             hoursByShift[shift].productionHours += parseFloat(r.productiveHours);
           }
-          // Training hours might come from a different field; adjust as needed
           if (r.trainingHours && !isNaN(r.trainingHours)) {
             hoursByShift[shift].trainingHours += parseFloat(r.trainingHours);
           }
@@ -342,14 +356,12 @@
 
       shiftGrid.innerHTML = data.shiftAnalysis.map(s => {
         const shiftKey = s.shift || 'Unknown';
-        // Use calculated hours from rows if available and shiftAnalysis value seems too small
         let prodHours = s.productionHours;
         let trainHours = s.trainingHours;
 
         if (hoursByShift[shiftKey]) {
           const calcProd = hoursByShift[shiftKey].productionHours;
           const calcTrain = hoursByShift[shiftKey].trainingHours;
-          // If calculated hours are significantly larger, use them
           if (calcProd > prodHours * 10) prodHours = calcProd;
           if (calcTrain > trainHours * 10) trainHours = calcTrain;
         }
@@ -634,7 +646,6 @@
   }
 
   // ========== CHART HELPERS ==========
-  // ✅ تم إصلاح دالة chartOptions لإزالة التكرار وإضافة تنسيق الأرقام الصحيح
   function chartOptions(axes) {
     return {
       responsive: true,
@@ -665,7 +676,6 @@
                 label += ': ';
               }
               if (context.parsed.y !== null) {
-                // Show clean numbers: integers for large values, 1-2 decimals for small
                 const val = context.parsed.y;
                 const digits = Math.abs(val) >= 100 ? 0 : (Math.abs(val) >= 10 ? 1 : 2);
                 label += new Intl.NumberFormat('en-US', {
@@ -685,7 +695,6 @@
           title: cfg.title ? { display: true, text: cfg.title, color: cfg.color || getCSS('--md-on-surface-variant') } : undefined,
           ticks: { 
             color: cfg.color || getCSS('--md-on-surface-variant'),
-            // Show clean readable numbers: 2700, 3100, 1,726, etc.
             callback: function(value) {
               return new Intl.NumberFormat('en-US', {
                 notation: 'standard',
@@ -724,6 +733,23 @@
 
   // ========== FILTER WIRING ==========
   function wireFilters() {
+    // Overview date selector (NEW)
+    const overviewDateInput = $('#overview-date');
+    const availableDates = allDatesFromOutputData();
+    
+    if (overviewDateInput && availableDates.length > 0) {
+      overviewDateInput.min = availableDates[0];
+      overviewDateInput.max = availableDates[availableDates.length - 1];
+      overviewDateInput.value = availableDates[availableDates.length - 1]; // Default to latest
+      
+      overviewDateInput.addEventListener('change', e => {
+        renderOverview(e.target.value);
+      });
+    } else if (overviewDateInput) {
+      overviewDateInput.disabled = true;
+      overviewDateInput.placeholder = 'No data available';
+    }
+
     // Overview date range
     const overviewFrom = $('#overview-from');
     const overviewTo = $('#overview-to');
@@ -833,7 +859,7 @@
     populateActiveTimeFilters();
     populateNotesFilters();
     wireFilters();
-    renderCurrentSection();
+    renderOverview(); // Renders with latest date by default
     hideLoading();
   }
 
