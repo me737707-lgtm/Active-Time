@@ -164,6 +164,17 @@
       "totalUsers": 743,
       "avgHoursPerProductionUser": 5.92,
       "avgHoursPerUser": 5.77
+    },
+    {
+      "period": "2026, 07-17",
+      "productionUsers": 293,
+      "productionHours": 1,
+      "trainingUsers": 14,
+      "trainingHours": 26.16,
+      "totalHours": 1,
+      "totalUsers": 307,
+      "avgHoursPerProductionUser": 4.51,
+      "avgHoursPerUser": 4.39
     }
   ]
 }
