@@ -212,13 +212,24 @@
     {
       "period": "2026, 07-21",
       "productionUsers": 708,
-      "productionHours": 4383.692884,
+      "productionHours": 4,
       "trainingUsers": 25,
-      "trainingHours": 84.44553375,
-      "totalHours": 4468.138417,
+      "trainingHours": 84.45,
+      "totalHours": 4,
       "totalUsers": 733,
-      "avgHoursPerProductionUser": 6.191656615,
-      "avgHoursPerUser": 6.095686791
+      "avgHoursPerProductionUser": 6.19,
+      "avgHoursPerUser": 6.1
+    },
+    {
+      "period": "2026, 07-22",
+      "productionUsers": 721,
+      "productionHours": 4,
+      "trainingUsers": 28,
+      "trainingHours": 71.73,
+      "totalHours": 4,
+      "totalUsers": 749,
+      "avgHoursPerProductionUser": 5.82,
+      "avgHoursPerUser": 5.7
     }
   ]
 }
