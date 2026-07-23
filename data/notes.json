@@ -1061,5 +1061,184 @@
         "note": "User has more Production hours than Training hours (+6.0697)"
       }
     ]
+  },
+  "2026-07-20": {
+    "rows": [
+      {
+        "user": "me123622@meti.ai",
+        "trainingHours": 1.8674,
+        "productionHours": 1.8674,
+        "difference": 0,
+        "note": "Production hours = Training hours"
+      },
+      {
+        "user": "me136987@meti.ai",
+        "trainingHours": 3.3027,
+        "productionHours": 16.1622,
+        "difference": 12.8595,
+        "note": "User has more Production hours than Training hours (+12.8595)"
+      },
+      {
+        "user": "me141514@meti.ai",
+        "trainingHours": 2.4126,
+        "productionHours": 11.9243,
+        "difference": 9.5117,
+        "note": "User has more Production hours than Training hours (+9.5117)"
+      },
+      {
+        "user": "me170072@meti.ai",
+        "trainingHours": 3.186,
+        "productionHours": 8.8295,
+        "difference": 5.6435,
+        "note": "User has more Production hours than Training hours (+5.6435)"
+      },
+      {
+        "user": "me178690@meti.ai",
+        "trainingHours": 2.8594,
+        "productionHours": 4.3035,
+        "difference": 1.4441,
+        "note": "User has more Production hours than Training hours (+1.4441)"
+      },
+      {
+        "user": "me181152@meti.ai",
+        "trainingHours": 1.2183,
+        "productionHours": 6.8223,
+        "difference": 5.604,
+        "note": "User has more Production hours than Training hours (+5.6040)"
+      },
+      {
+        "user": "me318177@meti.ai",
+        "trainingHours": 1.8423,
+        "productionHours": 9.6543,
+        "difference": 7.812,
+        "note": "User has more Production hours than Training hours (+7.8120)"
+      },
+      {
+        "user": "me325383@meti.ai",
+        "trainingHours": 3.5571,
+        "productionHours": 11.0638,
+        "difference": 7.5067,
+        "note": "User has more Production hours than Training hours (+7.5067)"
+      },
+      {
+        "user": "me392473@meti.ai",
+        "trainingHours": 0.485,
+        "productionHours": 6.5707,
+        "difference": 6.0857,
+        "note": "User has more Production hours than Training hours (+6.0857)"
+      },
+      {
+        "user": "me454466@meti.ai",
+        "trainingHours": 0.481,
+        "productionHours": 5.8983,
+        "difference": 5.4173,
+        "note": "User has more Production hours than Training hours (+5.4173)"
+      },
+      {
+        "user": "me464756@meti.ai",
+        "trainingHours": 4.05,
+        "productionHours": 7.4766,
+        "difference": 3.4266,
+        "note": "User has more Production hours than Training hours (+3.4266)"
+      },
+      {
+        "user": "me538513@meti.ai",
+        "trainingHours": 0,
+        "productionHours": 6.6756,
+        "difference": 6.6756,
+        "note": "User has more Production hours than Training hours (+6.6756)"
+      },
+      {
+        "user": "me569672@meti.ai",
+        "trainingHours": 0,
+        "productionHours": 1.4486,
+        "difference": 1.4486,
+        "note": "User has more Production hours than Training hours (+1.4486)"
+      },
+      {
+        "user": "me617218@meti.ai",
+        "trainingHours": 1.2183,
+        "productionHours": 7.7083,
+        "difference": 6.4901,
+        "note": "User has more Production hours than Training hours (+6.4901)"
+      },
+      {
+        "user": "me617513@meti.ai",
+        "trainingHours": 1.1756,
+        "productionHours": 9.283,
+        "difference": 8.1074,
+        "note": "User has more Production hours than Training hours (+8.1074)"
+      },
+      {
+        "user": "me623857@meti.ai",
+        "trainingHours": 3.7649,
+        "productionHours": 9.5392,
+        "difference": 5.7744,
+        "note": "User has more Production hours than Training hours (+5.7744)"
+      },
+      {
+        "user": "me647724@meti.ai",
+        "trainingHours": 2.9332,
+        "productionHours": 9.4437,
+        "difference": 6.5105,
+        "note": "User has more Production hours than Training hours (+6.5105)"
+      },
+      {
+        "user": "me667408@meti.ai",
+        "trainingHours": 5.4902,
+        "productionHours": 12.0808,
+        "difference": 6.5906,
+        "note": "User has more Production hours than Training hours (+6.5906)"
+      },
+      {
+        "user": "me683796@meti.ai",
+        "trainingHours": 4.5059,
+        "productionHours": 14.199,
+        "difference": 9.6931,
+        "note": "User has more Production hours than Training hours (+9.6931)"
+      },
+      {
+        "user": "me721544@meti.ai",
+        "trainingHours": 2.2209,
+        "productionHours": 8.6252,
+        "difference": 6.4043,
+        "note": "User has more Production hours than Training hours (+6.4043)"
+      },
+      {
+        "user": "me756187@meti.ai",
+        "trainingHours": 8.2012,
+        "productionHours": 13.0594,
+        "difference": 4.8582,
+        "note": "User has more Production hours than Training hours (+4.8582)"
+      },
+      {
+        "user": "me834698@meti.ai",
+        "trainingHours": 0.4374,
+        "productionHours": 6.2682,
+        "difference": 5.8308,
+        "note": "User has more Production hours than Training hours (+5.8308)"
+      },
+      {
+        "user": "me884641@meti.ai",
+        "trainingHours": 2.1594,
+        "productionHours": 7.5666,
+        "difference": 5.4072,
+        "note": "User has more Production hours than Training hours (+5.4072)"
+      },
+      {
+        "user": "me900078@meti.ai",
+        "trainingHours": 0.5653,
+        "productionHours": 0.5653,
+        "difference": 0,
+        "note": "Production hours = Training hours"
+      },
+      {
+        "user": "me952250@meti.ai",
+        "trainingHours": 0,
+        "productionHours": 0,
+        "difference": 0,
+        "note": "Production hours = Training hours"
+      }
+    ]
   }
 }
