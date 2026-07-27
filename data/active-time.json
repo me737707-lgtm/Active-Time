@@ -45891,6 +45891,110 @@
         "productiveHours": 12.33
       },
       {
+        "labeler": "me136477@meti.ai",
+        "tlQtc": "Awad Wagdy",
+        "shift": "N",
+        "pc": "me-C2-81-N",
+        "unit": "NC Unit 102",
+        "productiveHours": 5.28
+      },
+      {
+        "labeler": "me413070@meti.ai",
+        "tlQtc": "Awad Wagdy",
+        "shift": "N",
+        "pc": "me-C2-83-N",
+        "unit": "NC Unit 102",
+        "productiveHours": 8.46
+      },
+      {
+        "labeler": "me127964@meti.ai",
+        "tlQtc": "Awad Wagdy",
+        "shift": "N",
+        "pc": "me-C2-84-N",
+        "unit": "NC Unit 102",
+        "productiveHours": 3.55
+      },
+      {
+        "labeler": "me518242@meti.ai",
+        "tlQtc": "Awad Wagdy",
+        "shift": "N",
+        "pc": "me-C2-85-N",
+        "unit": "NC Unit 102",
+        "productiveHours": 6.5
+      },
+      {
+        "labeler": "me203937@meti.ai",
+        "tlQtc": "Awad Wagdy",
+        "shift": "N",
+        "pc": "me-C2-86-N",
+        "unit": "NC Unit 102",
+        "productiveHours": 5.67
+      },
+      {
+        "labeler": "me848544@meti.ai",
+        "tlQtc": "Awad Wagdy",
+        "shift": "N",
+        "pc": "me-C2-87-N",
+        "unit": "NC Unit 102",
+        "productiveHours": 10.05
+      },
+      {
+        "labeler": "me387757@meti.ai",
+        "tlQtc": "Awad Wagdy",
+        "shift": "N",
+        "pc": "me-C2-89-N",
+        "unit": "NC Unit 102",
+        "productiveHours": 5.89
+      },
+      {
+        "labeler": "me746198@meti.ai",
+        "tlQtc": "Awad Wagdy",
+        "shift": "N",
+        "pc": "me-C2-90-N",
+        "unit": "NC Unit 102",
+        "productiveHours": 4.99
+      },
+      {
+        "labeler": "me589587@meti.ai",
+        "tlQtc": "Awad Wagdy",
+        "shift": "N",
+        "pc": "me-C2-91-N",
+        "unit": "NC Unit 102",
+        "productiveHours": 5.59
+      },
+      {
+        "labeler": "me783437@meti.ai",
+        "tlQtc": "Awad Wagdy",
+        "shift": "N",
+        "pc": "me-C2-92-N",
+        "unit": "NC Unit 102",
+        "productiveHours": 6.34
+      },
+      {
+        "labeler": "me495658@meti.ai",
+        "tlQtc": "Awad Wagdy",
+        "shift": "N",
+        "pc": "me-C2-93-N",
+        "unit": "NC Unit 102",
+        "productiveHours": 1.47
+      },
+      {
+        "labeler": "me838332@meti.ai",
+        "tlQtc": "Awad Wagdy",
+        "shift": "N",
+        "pc": "me-C2-94-N",
+        "unit": "NC Unit 102",
+        "productiveHours": 3.95
+      },
+      {
+        "labeler": "me489787@meti.ai",
+        "tlQtc": "Awad Wagdy",
+        "shift": "N",
+        "pc": "me-C2-95-N",
+        "unit": "NC Unit 102",
+        "productiveHours": 7.58
+      },
+      {
         "labeler": "me805880@meti.ai",
         "tlQtc": "Awad Wagdy",
         "shift": "N",
@@ -46795,110 +46899,6 @@
         "productiveHours": 6.07
       },
       {
-        "labeler": "me136477@meti.ai",
-        "tlQtc": "Mostafa Helal (N)",
-        "shift": "N",
-        "pc": "me-C2-81-N",
-        "unit": "NC Unit 102",
-        "productiveHours": 5.28
-      },
-      {
-        "labeler": "me413070@meti.ai",
-        "tlQtc": "Mostafa Helal (N)",
-        "shift": "N",
-        "pc": "me-C2-83-N",
-        "unit": "NC Unit 102",
-        "productiveHours": 8.46
-      },
-      {
-        "labeler": "me127964@meti.ai",
-        "tlQtc": "Mostafa Helal (N)",
-        "shift": "N",
-        "pc": "me-C2-84-N",
-        "unit": "NC Unit 102",
-        "productiveHours": 3.55
-      },
-      {
-        "labeler": "me518242@meti.ai",
-        "tlQtc": "Mostafa Helal (N)",
-        "shift": "N",
-        "pc": "me-C2-85-N",
-        "unit": "NC Unit 102",
-        "productiveHours": 6.5
-      },
-      {
-        "labeler": "me203937@meti.ai",
-        "tlQtc": "Mostafa Helal (N)",
-        "shift": "N",
-        "pc": "me-C2-86-N",
-        "unit": "NC Unit 102",
-        "productiveHours": 5.67
-      },
-      {
-        "labeler": "me848544@meti.ai",
-        "tlQtc": "Mostafa Helal (N)",
-        "shift": "N",
-        "pc": "me-C2-87-N",
-        "unit": "NC Unit 102",
-        "productiveHours": 10.05
-      },
-      {
-        "labeler": "me387757@meti.ai",
-        "tlQtc": "Mostafa Helal (N)",
-        "shift": "N",
-        "pc": "me-C2-89-N",
-        "unit": "NC Unit 102",
-        "productiveHours": 5.89
-      },
-      {
-        "labeler": "me746198@meti.ai",
-        "tlQtc": "Mostafa Helal (N)",
-        "shift": "N",
-        "pc": "me-C2-90-N",
-        "unit": "NC Unit 102",
-        "productiveHours": 4.99
-      },
-      {
-        "labeler": "me589587@meti.ai",
-        "tlQtc": "Mostafa Helal (N)",
-        "shift": "N",
-        "pc": "me-C2-91-N",
-        "unit": "NC Unit 102",
-        "productiveHours": 5.59
-      },
-      {
-        "labeler": "me783437@meti.ai",
-        "tlQtc": "Mostafa Helal (N)",
-        "shift": "N",
-        "pc": "me-C2-92-N",
-        "unit": "NC Unit 102",
-        "productiveHours": 6.34
-      },
-      {
-        "labeler": "me495658@meti.ai",
-        "tlQtc": "Mostafa Helal (N)",
-        "shift": "N",
-        "pc": "me-C2-93-N",
-        "unit": "NC Unit 102",
-        "productiveHours": 1.47
-      },
-      {
-        "labeler": "me838332@meti.ai",
-        "tlQtc": "Mostafa Helal (N)",
-        "shift": "N",
-        "pc": "me-C2-94-N",
-        "unit": "NC Unit 102",
-        "productiveHours": 3.95
-      },
-      {
-        "labeler": "me489787@meti.ai",
-        "tlQtc": "Mostafa Helal (N)",
-        "shift": "N",
-        "pc": "me-C2-95-N",
-        "unit": "NC Unit 102",
-        "productiveHours": 7.58
-      },
-      {
         "labeler": "me351793@meti.ai",
         "tlQtc": "Osama Ashraf",
         "shift": "N",
@@ -47523,6 +47523,14 @@
         "productiveHours": 5.27
       },
       {
+        "labeler": "me382633@meti.ai",
+        "tlQtc": "Asmaa Khaled (M)",
+        "shift": "M",
+        "pc": "me-C2-67-M",
+        "unit": "NC Unit 102",
+        "productiveHours": 7.93
+      },
+      {
         "labeler": "me497157@meti.ai",
         "tlQtc": "Asmaa Khaled (M)",
         "shift": "M",
@@ -47561,14 +47569,6 @@
         "pc": "me-C2-72-M",
         "unit": "NC Unit 102",
         "productiveHours": 6.07
-      },
-      {
-        "labeler": "me382633@meti.ai",
-        "tlQtc": "Asmaa Khaled (M)",
-        "shift": "M",
-        "pc": "me-C2-73-M",
-        "unit": "NC Unit 102",
-        "productiveHours": 7.93
       },
       {
         "labeler": "me123223@meti.ai",
@@ -48491,20 +48491,20 @@
         "productiveHours": 6.22
       },
       {
+        "labeler": "me523282@meti.ai",
+        "tlQtc": "Moataz Ahmed (M)",
+        "shift": "M",
+        "pc": "me-C2-14-M",
+        "unit": "NC Unit 102",
+        "productiveHours": 7.4
+      },
+      {
         "labeler": "me464491@meti.ai",
         "tlQtc": "Moataz Ahmed (M)",
         "shift": "M",
         "pc": "me-C2-15-M",
         "unit": "NC Unit 102",
         "productiveHours": 7.38
-      },
-      {
-        "labeler": "me523282@meti.ai",
-        "tlQtc": "Moataz Ahmed (M)",
-        "shift": "M",
-        "pc": "me-C2-16-M",
-        "unit": "NC Unit 102",
-        "productiveHours": 7.4
       },
       {
         "labeler": "me126612@meti.ai",
@@ -48627,12 +48627,12 @@
         "productiveHours": 6.05
       },
       {
-        "labeler": "me919213@meti.ai",
+        "labeler": "me200506@meti.ai",
         "tlQtc": "Nadeen Mohey (M)",
         "shift": "M",
         "pc": "me-C2-24-M",
         "unit": "NC Unit 102",
-        "productiveHours": 2.3
+        "productiveHours": 6.41
       },
       {
         "labeler": "me788576@meti.ai",
@@ -48675,12 +48675,12 @@
         "productiveHours": 5.93
       },
       {
-        "labeler": "me200506@meti.ai",
+        "labeler": "me919213@meti.ai",
         "tlQtc": "Nadeen Mohey (M)",
         "shift": "M",
         "pc": "me-C2-30-M",
         "unit": "NC Unit 102",
-        "productiveHours": 6.41
+        "productiveHours": 2.3
       },
       {
         "labeler": "me991143@meti.ai",
@@ -49435,20 +49435,20 @@
         "productiveHours": 6.37
       },
       {
-        "labeler": "me157151@meti.ai",
+        "labeler": "me170878@meti.ai",
         "tlQtc": "Wafaa Fathy (M)",
         "shift": "M",
         "pc": "me-C2-41-M",
         "unit": "NC Unit 102",
-        "productiveHours": 6.2
+        "productiveHours": 6.58
       },
       {
-        "labeler": "me170878@meti.ai",
+        "labeler": "me157151@meti.ai",
         "tlQtc": "Wafaa Fathy (M)",
         "shift": "M",
         "pc": "me-C2-42-M",
         "unit": "NC Unit 102",
-        "productiveHours": 6.58
+        "productiveHours": 6.2
       },
       {
         "labeler": "me612281@meti.ai",
